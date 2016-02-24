@@ -1,6 +1,6 @@
 module.exports = {
-  reviewing: function(text) {
-    return text.replace("reviewing:", "").trim();
+  student: function(text) {
+    return text.replace("student:", "").trim();
   },
   notes: function(text){
     return text.replace("notes:", "").trim();
