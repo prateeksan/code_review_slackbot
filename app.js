@@ -10,7 +10,9 @@ var menu = require('./menu.js');
 
 var port = process.env.PORT || 1337;
 
-message_log = [];
+var message_log = [];
+
+var entry = {};
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -43,8 +45,7 @@ app.post('/reviewing', function(req, res, next) {
   var userName = req.body.user_name;
   var botPayLoad = { text: "Cool"};
   // Custom variables
-  var greeting = "";
-  var entry = {};
+  var greeting = "Hello from the other side";
   var patterns = {
     hello: new RegExp(/^hello/),
     student: new RegExp(/^student:/),
@@ -70,6 +71,7 @@ app.post('/reviewing', function(req, res, next) {
   } else if (patterns.end.test(text)) {
     entry.reviewer = userName;
     message_log.push(entry);
+    entry = {};
     botPayLoad.text = "Saved! Review by:" + userName + ". Text: " + text
   } 
 
