@@ -8,7 +8,7 @@ var app = express();
 
 var port = process.env.PORT || 1337;
 
-var message_log = []
+message_log = [];
 
 app.use(bodyParser.urlencoded({extended: true}));
 
