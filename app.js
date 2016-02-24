@@ -21,7 +21,21 @@ app.listen(port, function(){
 app.post('/hello', function(req, res, next) {
   var userName = req.body.user_name;
   var botPayLoad = {
-    text: 'Hello ' + userName + ', welcome to the lhl Slack channel!'
+    text: 'Hello ' + userName + ', welcome type reviewing to start a session!'
+  };
+
+  if(userName !== 'slackbot'){
+    return res.status(200).json(botPayLoad);
+  } else {
+    return res.status(200).end();
+  }
+});
+
+app.post('/reviewing', function(req, res, next) {
+  var userName = req.body.user_name;
+  var response = req.body;
+  var botPayLoad = {
+    text: response
   };
 
   if(userName !== 'slackbot'){
