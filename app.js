@@ -42,7 +42,7 @@ app.post('/reviewing', function(req, res, next) {
   entry['reviewer'] = userName;
   entry['notes'] = text;
   var botPayLoad = {
-    text: "Saved! Review by:" + userName + ". Text: " + text + trigger_word
+    text: "Saved! Review by:" + userName + ". Text: " + text + trigger
   };
 
   if(userName !== 'slackbot'){
