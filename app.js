@@ -65,7 +65,7 @@ app.post('/reviewing', function(req, res, next) {
     entry[trigger] = parse.term(trigger, text);
   } else if(trigger == "hello"){
     botPayLoad.text = greeting;
-  } else if {trigger == "end"){
+  } else if (trigger == "end"){
     entry.reviewer = userName;
     message_log.push(entry);
     entry = {};
