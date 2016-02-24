@@ -6,6 +6,6 @@ module.exports = {
     return text.replace("notes:", "").trim();
   },
   score: function(text){
-    return score.replace("score:", "").trim();
+    return text.replace("score:", "").trim();
   }
 };

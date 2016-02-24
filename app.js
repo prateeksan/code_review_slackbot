@@ -22,18 +22,19 @@ app.listen(port, function(){
 });
 
 // building the bot
-app.post('/hello', function(req, res, next) {
-  var userName = req.body.user_name;
-  var botPayLoad = {
-    text: 'Hello ' + userName + ', welcome type reviewing to start a session!'
-  };
 
-  if(userName !== 'slackbot'){
-    return res.status(200).json(botPayLoad);
-  } else {
-    return res.status(200).end();
-  }
-});
+// app.post('/hello', function(req, res, next) {
+//   var userName = req.body.user_name;
+//   var botPayLoad = {
+//     text: 'Hello ' + userName + ', welcome type reviewing to start a session!'
+//   };
+
+//   if(userName !== 'slackbot'){
+//     return res.status(200).json(botPayLoad);
+//   } else {
+//     return res.status(200).end();
+//   }
+// });
 
 
 app.post('/reviewing', function(req, res, next) {
@@ -44,25 +45,31 @@ app.post('/reviewing', function(req, res, next) {
   if(userName !== 'slackbot'){
     var greeting = "";
     var entry = {};
-    var hello_pattern = new RegExp(/^hello/);
-    var reviewing_pattern = new RegExp(/^reviewing:/);
-    var notes_pattern = new RegExp(/^notes:/);
-    var score_pattern = new RegExp(/^score:/);
-    var end_pattern = new RegExp(/^end/);
-    var new_text = "";
+    var patterns = {
+      hello: new RegExp(/^hello/),
+      reviewing: new RegExp(/^reviewing:/),
+      notes: new RegExp(/^notes:/),
+      score: new RegExp(/^score:/),
+      end: new RegExp(/^end/)
+    };
 
-    if(text.test(reviewing_pattern)){
+    // for (var menuChoice in patterns) {
+    //   if (text.test(patterns[menuChoice])) {
+    //     entry[menuChoice] = 
+    //   }
+    // }
+
+    if(text.test(patterns.reviewing)){
       entry.student = menu.reviewing(text);
     }
-    else if(text.test(notes_pattern)){
+    else if(text.test(patterns.notes)){
       entry.notes = menu.notes(text); 
     }
-    else if(text.test(score_pattern)){
-      entry.notes = menu.notes(text); 
+    else if(text.test(patterns.score)){
+      entry.score = menu.score(text); 
     }   
-    else if(text.test(end_pattern)){
+    else if(text.test(patterns.end)){
      entry.reviewer = userName;
-     message_log = [];
      message_log.push(entry);
    }
 
