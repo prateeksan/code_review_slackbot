@@ -1,0 +1,13 @@
+{
+  "name": "lhlbot",
+  "version": "0.0.1",
+  "description": "lhl slackbot node server",
+  "main": "app.js",
+  "author": "Prateek Sanyal",
+  "license": "None",
+  "dependencies": {
+    "express": "^4.x.x",
+    "body-parser": "^1.x.x",
+    "request": "2.56.x"
+  }
+}
