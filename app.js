@@ -62,11 +62,13 @@ app.post('/reviewing', function(req, res, next) {
   // }
 
   if(word_list.indexOf(trigger) !== -1) {
+    console.log("Before Parse" + trigger);
     entry[trigger] = parse.term(trigger, text);
+    console.log("After parse" + entry[trigger]);
   } else if(trigger == "hello"){
     botPayLoad.text = greeting;
   } else if (trigger == "end"){
-    entry.reviewer = userName;
+    entry.mentor = userName;
     message_log.push(entry);
     entry = {};
     botPayLoad.text = "Saved! Review by:" + userName + ". Text: " + text
