@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
+var menu = require('./menu.js');
+
 var port = process.env.PORT || 1337;
 
 message_log = [];
@@ -33,10 +35,12 @@ app.post('/hello', function(req, res, next) {
   }
 });
 
+
 app.post('/reviewing', function(req, res, next) {
   var text = req.body.text;
   var trigger = req.body.trigger_word;
   var userName = req.body.user_name;
+  var botPayLoad = {};
   if(userName !== 'slackbot'){
     var greeting = "";
     var entry = {};
@@ -48,39 +52,27 @@ app.post('/reviewing', function(req, res, next) {
     var new_text = "";
 
     if(text.test(reviewing_pattern)){
-      new_text = text.replace("reviewing:");
-      if(new_text[0] == " "){
-        new_text = new_text.substring(1);
-      }
-      entry['student'] = new_text; 
+      entry.student = menu.reviewing(text);
     }
     else if(text.test(notes_pattern)){
-      new_text = text.replace("notes:");
-      if(new_text[0] == " "){
-        new_text = new_text.substring(1);
-      }
-      entry['notes'] = new_text; 
+      entry.notes = menu.notes(text); 
     }
     else if(text.test(score_pattern)){
-      new_text = text.replace("score:");
-      if(new_text[0] == " "){
-        new_text = new_text.substring(1);
-      }
-      entry['score'] = new_text; 
+      entry.notes = menu.notes(text); 
     }   
     else if(text.test(end_pattern)){
-     entry['reviewer'] = userName;
+     entry.reviewer = userName;
      message_log = [];
      message_log.push(entry);
    }
 
   if(text.test(hello_pattern)){
-    var botPayLoad = {
+    botPayLoad = {
       text: greeting
     };
   }
   if(text.test(end_pattern)){
-    var botPayLoad = {
+    botPayLoad = {
       text: "Saved! Review by:" + userName + ". Text: " + text
     };
   }
