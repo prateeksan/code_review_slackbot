@@ -24,7 +24,7 @@ app.post('/hello', function(req, res, next) {
     text: 'Hello' + userName + ', welcome to the lhl Slack channel!'
   };
 
-  if(userName !== 'code_panda'){
+  if(userName !== 'slackbot'){
     return res.status(200).json(botPayLoad);
   } else {
     return res.status(200).end();
