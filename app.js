@@ -32,10 +32,11 @@ app.post('/hello', function(req, res, next) {
 });
 
 app.post('/reviewing', function(req, res, next) {
+  var text = req.body.text;
+  var trigger = req.body.trigger_word;
   var userName = req.body.user_name;
-  var response = req.body;
   var botPayLoad = {
-    text: response
+    text: "Review by:" + userName + "Text: " + text
   };
 
   if(userName !== 'slackbot'){
