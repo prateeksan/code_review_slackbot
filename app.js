@@ -8,9 +8,12 @@ var app = express();
 
 var port = process.env.PORT || 1337;
 
+var message_log = []
+
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get('/', function(req, res) {res.status(200).send('hello world');});
+app.get('/', function(req, res) {
+  res.status(200).send(message_log);});
 
 app.listen(port, function(){
   console.log('Listening on port ' + port);
@@ -35,11 +38,15 @@ app.post('/reviewing', function(req, res, next) {
   var text = req.body.text;
   var trigger = req.body.trigger_word;
   var userName = req.body.user_name;
+  var entry = {};
+  entry['Reviewer'] = userName;
+  entry['Notes'] = text;
   var botPayLoad = {
     text: "Saved! Review by:" + userName + ". Text: " + text
   };
 
   if(userName !== 'slackbot'){
+    message_log.push(entry);
     return res.status(200).json(botPayLoad);
   } else {
     return res.status(200).end();
