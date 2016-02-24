@@ -39,10 +39,10 @@ app.post('/reviewing', function(req, res, next) {
   var trigger = req.body.trigger_word;
   var userName = req.body.user_name;
   var entry = {};
-  entry['Reviewer'] = userName;
-  entry['Notes'] = text;
+  entry['reviewer'] = userName;
+  entry['notes'] = text;
   var botPayLoad = {
-    text: "Saved! Review by:" + userName + ". Text: " + text
+    text: "Saved! Review by:" + userName + ". Text: " + text + trigger_word
   };
 
   if(userName !== 'slackbot'){
