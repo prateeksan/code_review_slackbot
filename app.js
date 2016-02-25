@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-var menu = require('./parse.js');
+var parse = require('./parse.js');
 
 var port = process.env.PORT || 1337;
 
@@ -62,9 +62,7 @@ app.post('/reviewing', function(req, res, next) {
   // }
 
   if(word_list.indexOf(trigger) !== -1) {
-    console.log("Before Parse" + trigger);
     entry[trigger] = parse.term(trigger, text);
-    console.log("After parse" + entry[trigger]);
   } else if(trigger == "hello"){
     botPayLoad.text = greeting;
   } else if (trigger == "end"){
