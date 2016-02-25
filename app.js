@@ -1,5 +1,7 @@
 // Setting up and testing server
 
+var fetch = require('isomorphic-fetch');
+
 var express = require('express');
 
 var bodyParser = require('body-parser');
@@ -39,6 +41,13 @@ app.post('/reviewing', function(req, res, next) {
   } else if (trigger == "end"){
     entry.mentor = userName;
     message_log.push(entry);
+    fetch('http://localhost:3000/code_review', {
+      method: 'POST',
+      body: JSON.stringify(entry),
+      header: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => console.log(response));
     entry = {};
     botPayLoad.text = "Saved! Review by:" + userName + ". Text: " + text
   }

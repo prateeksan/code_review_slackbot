@@ -6,8 +6,9 @@
   "author": "Prateek Sanyal",
   "license": "None",
   "dependencies": {
-    "express": "^4.x.x",
     "body-parser": "^1.x.x",
+    "express": "^4.x.x",
+    "isomorphic-fetch": "^2.2.1",
     "request": "2.56.x"
   }
 }
