@@ -41,7 +41,7 @@ app.post('/reviewing', function(req, res, next) {
   } else if (trigger == "end"){
     entry.mentor = userName;
     message_log.push(entry);
-    fetch('http://localhost:3000/code_review', {
+    fetch('http://localhost:3000/code_review/reviews', {
       method: 'POST',
       body: JSON.stringify(entry),
       header: {
