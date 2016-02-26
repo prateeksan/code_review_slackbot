@@ -41,7 +41,8 @@ app.post('/reviewing', function(req, res, next) {
   } else if (trigger == "end"){
     entry.mentor = userName;
     message_log.push(entry);
-    fetch('http://localhost:3000/reviews', {
+    console.log("sending");
+    fetch('https://rottencode.herokuapp.com/reviews', {
       method: 'POST',
       body: JSON.stringify(entry),
       header: {
