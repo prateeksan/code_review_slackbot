@@ -44,7 +44,7 @@ app.post('/reviewing', function(req, res, next) {
     console.log("sending");
     fetch('https://rottencode.herokuapp.com/reviews', {
       method: 'POST',
-      body: JSON.stringify(entry),
+      body: "entry=" + JSON.stringify(entry),
       header: {
         'Content-Type': 'application/json'
       }
