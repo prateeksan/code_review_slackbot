@@ -48,14 +48,15 @@ app.post('/reviewing', function(req, res, next) {
       header: {
         'Content-Type': 'application/json'
       }
-    }).then(response => console.log(response));
+    }).then(function(response){
+      botPayLoad.text = response.json();
+      if (userName !== 'slackbot') {
+        res.status(200).json(botPayLoad);
+      } else {
+        res.status(200).end();
+      }
+    });
     entry = {};
-    botPayLoad.text = "Saved! Review by:" + userName + ". Text: " + text
   }
 
-  if (userName !== 'slackbot') {
-    return res.status(200).json(botPayLoad);
-  } else {
-    return res.status(200).end();
-  }
 });
