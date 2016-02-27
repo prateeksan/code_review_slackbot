@@ -49,14 +49,14 @@ app.post('/reviewing', function(req, res, next) {
         'Content-Type': 'application/json'
       }
     }).then(function(response){
+      entry = {};
       botPayLoad.text = response.json();
       if (userName !== 'slackbot') {
-        res.status(200).json(botPayLoad);
+        return res.status(200).json(botPayLoad);
       } else {
-        res.status(200).end();
+        return res.status(200).end();
       }
     });
-    entry = {};
   }
 
 });
