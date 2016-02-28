@@ -16,7 +16,7 @@ var message_log = [];
 
 var entry = {};
 
-var word_list = ["student:", "score:", "notes:", "url:"]
+var word_list = ["student:", "score:", "notes:", "url:", "title:"]
 
 app.use(bodyParser.urlencoded({extended: true}));
 

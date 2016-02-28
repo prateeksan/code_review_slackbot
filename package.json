@@ -4,7 +4,7 @@
   "description": "lhl slackbot node server",
   "main": "app.js",
   "author": "Prateek Sanyal",
-  "license": "None",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.x.x",
     "express": "^4.x.x",
