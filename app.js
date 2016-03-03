@@ -18,7 +18,7 @@ var entry = {};
 
 var word_list = ["student:", "score:", "notes:", "url:", "title:"]
 
-var responses = ["back in my day, we used excel sheets for all this", "yay, more work for me", "much wow", "I would give you feedback but I am not allowed to"]
+var responses = ["such amaze", "much intelligent, very computer", "much wow"]
 
 app.use(bodyParser.urlencoded({extended: true}));
 
