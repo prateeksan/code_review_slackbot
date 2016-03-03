@@ -34,7 +34,7 @@ app.post('/reviewing', function(req, res, next) {
   var trigger = req.body.trigger_word;
   var userName = req.body.user_name;
   var botPayLoad = { text: responses[Math.floor(Math.random()*responses.length)]};
-  var greeting = "Hello from the other side";
+  var greeting = "much hello, such day";
 
   if(word_list.indexOf(trigger) !== -1) {
     entry[trigger] = parse.term(trigger, text);
