@@ -18,6 +18,8 @@ var entry = {};
 
 var word_list = ["student:", "score:", "notes:", "url:", "title:"]
 
+var responses = ["back in my day, we used excel sheets for all this", "yay, more work for me", "much wow", "I would give you feedback but I am not allowed to"]
+
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res) {
@@ -31,7 +33,7 @@ app.post('/reviewing', function(req, res, next) {
   var text = req.body.text;
   var trigger = req.body.trigger_word;
   var userName = req.body.user_name;
-  var botPayLoad = { text: "Cool"};
+  var botPayLoad = { text: responses[Math.floor(Math.random()*responses.length)]};
   var greeting = "Hello from the other side";
 
   if(word_list.indexOf(trigger) !== -1) {
@@ -50,7 +52,7 @@ app.post('/reviewing', function(req, res, next) {
       }
     }).then(response => console.log(response));
     entry = {};
-    botPayLoad.text = "Saved! Review by:" + userName + ". Text: " + text
+    botPayLoad.text = "Saved! Review by:" + userName 
   }
 
   if (userName !== 'slackbot') {
